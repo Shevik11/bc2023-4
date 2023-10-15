@@ -9,8 +9,6 @@ const server = http.createServer((req, res) => { // Створюємо HTTP се
 
 
         const responseXml = `<data><max_rate>${maxRate}</max_rate></data>`; 
-
-        res.writeHead(200, { 'Content-Type': 'application/xml' }); // 200 - OK
         res.end(responseXml); 
     });
   } 
