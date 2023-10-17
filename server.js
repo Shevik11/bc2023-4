@@ -11,6 +11,7 @@ const server = http.createServer((req, res) => { // Створюємо HTTP се
          
       const builder = new xml.XMLBuilder();
       const xmlStr = builder.build({"data" : {"max_rate" : maxRate}});
+      res.writeHead(200, { 'Content-Type': 'application/xml' }); // 200 - OK
         res.end(xmlStr); 
     });
   } 
@@ -24,7 +25,7 @@ function findMaxRate(xmlData) {
   let maxRate = 0; 
 
   for (const rate of rates) { 
-    const rateValue = rate["rate"] // [1] - denote value
+    const rateValue = rate["rate"] 
 
     if (rateValue > maxRate) { 
       maxRate = rateValue; 
@@ -34,8 +35,7 @@ function findMaxRate(xmlData) {
   return maxRate; 
 }
 
-const port = 3000; 
+const port = 8000; 
 server.listen(port, () => { 
   console.log(`Server is running on port ${port}`); 
 });
-
